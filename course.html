@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Application Blueprint Course | ABH Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FFFBF7;
+            --color-text: #1a1a1a;
+            --color-text-muted: #5a5a5a;
+            --color-accent: #2D5A4A;
+            --color-accent-light: #E8F0ED;
+            --color-border: #e5e0db;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-sans: 'DM Sans', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); background-color: var(--color-bg); color: var(--color-text); line-height: 1.6; font-size: 17px; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--color-bg); border-bottom: 1px solid var(--color-border); z-index: 1000; padding: 1rem 2rem; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--color-text); font-size: 0.95rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--color-accent); }
+        .nav-cta { background: var(--color-accent); color: white !important; padding: 0.6rem 1.2rem; border-radius: 6px; }
+        .nav-cta:hover { background: #234a3c !important; }
+        .course-hero { padding: 10rem 2rem 6rem; background: linear-gradient(135deg, var(--color-accent) 0%, #3d7a64 100%); color: white; text-align: center; }
+        .course-hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; margin-bottom: 1.5rem; }
+        .course-hero p { font-size: 1.25rem; max-width: 650px; margin: 0 auto 2.5rem; opacity: 0.95; }
+        .price-tag { display: inline-block; background: rgba(255,255,255,0.15); padding: 1rem 2rem; border-radius: 12px; margin-bottom: 2rem; }
+        .price-tag .price { font-family: var(--font-serif); font-size: 2.5rem; }
+        .price-tag .price-note { font-size: 0.9rem; opacity: 0.85; }
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; cursor: pointer; border: none; }
+        .btn-white { background: white; color: var(--color-accent); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        section { padding: 5rem 2rem; }
+        .section-container { max-width: 1000px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; margin-bottom: 1rem; }
+        .section-header p { color: var(--color-text-muted); font-size: 1.1rem; }
+        .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .included-item { background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); }
+        .included-item h3 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 400; }
+        .included-item p { color: var(--color-text-muted); font-size: 0.95rem; }
+        #curriculum { background: white; }
+        .module { background: var(--color-bg); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; border: 1px solid var(--color-border); }
+        .module-header { padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .module-header h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; }
+        .module-header span { color: var(--color-text-muted); font-size: 0.9rem; }
+        .module-content { padding: 0 2rem 1.5rem; display: none; }
+        .module.active .module-content { display: block; }
+        .module-content ul { list-style: none; }
+        .module-content li { padding: 0.75rem 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.95rem; }
+        .module-content li:last-child { border-bottom: none; }
+        #login { background: var(--color-accent); color: white; }
+        #login .section-header h2 { color: white; }
+        #login .section-header p { color: rgba(255,255,255,0.8); }
+        .login-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 3rem; border-radius: 16px; max-width: 450px; margin: 0 auto; text-align: center; }
+        .login-box input { width: 100%; padding: 1rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; margin-bottom: 1rem; }
+        .login-box input::placeholder { color: rgba(255,255,255,0.6); }
+        .login-box button { width: 100%; padding: 1rem; background: white; color: var(--color-accent); border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .login-box button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .login-note { margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8; }
+        .course-cta { text-align: center; background: var(--color-bg); }
+        .course-cta h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; }
+        .course-cta p { color: var(--color-text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
+        .btn-primary { background: var(--color-accent); color: white; }
+        .btn-primary:hover { background: #234a3c; transform: translateY(-2px); }
+        footer { background: var(--color-text); color: white; padding: 3rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-logo { font-family: var(--font-serif); font-size: 1.3rem; }
+        .footer-links { display: flex; gap: 2rem; list-style: none; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .course-hero { padding: 8rem 1.5rem 4rem; }
+            .login-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ABH Consulting</a>
+            <ul class="nav-links">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="#curriculum">Curriculum</a></li>
+                <li><a href="#login">Student Login</a></li>
+                <li><a href="https://calendly.com/abhconsulting/30min" target="_blank" class="nav-cta">Book a Call</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="course-hero">
+        <h1>The Application Blueprint Course</h1>
+        <p>A comprehensive self-paced program covering everything you need to navigate college admissions with confidence—from building your profile to making your final decision.</p>
+        <div class="price-tag">
+            <div class="price">$80</div>
+            <div class="price-note">One-time payment • Lifetime access</div>
+        </div>
+        <br>
+        <a href="https://calendly.com/abhconsulting/30min" target="_blank" class="btn btn-white">Book a Call to Enroll</a>
+    </section>
+
+    <section id="included">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>What's Included</h2>
+                <p>Everything you need to master the college application process</p>
+            </div>
+            <div class="included-grid">
+                <div class="included-item">
+                    <h3>📚 16+ Video Lessons</h3>
+                    <p>In-depth modules covering every stage of the admissions process, from freshman year planning to decision day.</p>
+                </div>
+                <div class="included-item">
+                    <h3>📝 Worksheets & Templates</h3>
+                    <p>Downloadable resources including essay outlines, activity trackers, and school research templates.</p>
+                </div>
+                <div class="included-item">
+                    <h3>✅ Checklists & Timelines</h3>
+                    <p>Month-by-month guides so you never miss a deadline and always know what to focus on next.</p>
+                </div>
+                <div class="included-item">
+                    <h3>🔄 Lifetime Updates</h3>
+                    <p>As admissions evolves, so does this course. Get access to all future updates at no extra cost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Course Curriculum</h2>
+                <p>Click each module to see what's covered</p>
+            </div>
+
+            <div class="module active">
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>Part I: Understanding the Admissions Landscape</h3>
+                    <span>4 lessons</span>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Chapter 1: Introduction — How College Admissions Has Changed</li>
+                        <li>Chapter 2: How Admissions Actually Works</li>
+                        <li>Chapter 3: What Schools Are Really Looking For</li>
+                        <li>Chapter 4: Building Your Application Timeline</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>Part II: Building Your Profile</h3>
+                    <span>4 lessons</span>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Chapter 5: Academics & Course Selection Strategy</li>
+                        <li>Chapter 6: Extracurriculars That Actually Matter</li>
+                        <li>Chapter 7: Getting Strong Recommendation Letters</li>
+                        <li>Chapter 8: Standardized Testing — Strategy & Decisions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>Part III: The Application</h3>
+                    <span>4 lessons</span>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Chapter 9: Building a Balanced School List</li>
+                        <li>Chapter 10: Crafting Your Personal Statement</li>
+                        <li>Chapter 11: Supplemental Essays That Stand Out</li>
+                        <li>Chapter 12: The Activities Section & Resume</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>Part IV: Decisions & Beyond</h3>
+                    <span>4 lessons</span>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Chapter 13: Financial Aid & Scholarships</li>
+                        <li>Chapter 14: Interview Preparation</li>
+                        <li>Chapter 15: Navigating Waitlists & Deferrals</li>
+                        <li>Chapter 16: Making Your Final Decision</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="login">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Student Login</h2>
+                <p>Already enrolled? Access your course materials below.</p>
+            </div>
+            <div class="login-box">
+                <input type="text" id="access-code" placeholder="Enter your access code">
+                <button onclick="checkAccess()">Access Course Materials</button>
+                <p class="login-note">Your access code was sent to your email after purchase.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-cta">
+        <div class="section-container">
+            <h2>Ready to take control of your applications?</h2>
+            <p>Get lifetime access to the complete Application Blueprint Course.</p>
+            <a href="https://calendly.com/abhconsulting/30min" target="_blank" class="btn btn-primary">Book a Call to Enroll — $80</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">ABH Consulting</div>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="mailto:abhconsulting@outlook.com">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        function toggleModule(header) {
+            const module = header.parentElement;
+            module.classList.toggle('active');
+        }
+        function checkAccess() {
+            const code = document.getElementById('access-code').value.trim();
+            const validCodes = ['BLUEPRINT2024', 'STUDENT2024', 'ABH2024'];
+            if (validCodes.includes(code.toUpperCase())) {
+                window.location.href = 'course-portal.html';
+            } else {
+                alert('Invalid access code. Please check your email for the correct code or contact abhconsulting@outlook.com for help.');
+            }
+        }
+        document.getElementById('access-code').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkAccess();
+        });
+    </script>
+</body>
+</html>

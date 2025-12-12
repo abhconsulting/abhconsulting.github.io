@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Portal | ABH Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --color-bg: #FFFBF7; --color-text: #1a1a1a; --color-text-muted: #5a5a5a; --color-accent: #2D5A4A; --color-accent-light: #E8F0ED; --color-border: #e5e0db; --font-serif: 'Instrument Serif', Georgia, serif; --font-sans: 'DM Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+        nav { background: var(--color-accent); padding: 1rem 2rem; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; color: white; text-decoration: none; }
+        .portal-layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 60px); }
+        .sidebar { background: white; border-right: 1px solid var(--color-border); padding: 1.5rem 0; }
+        .sidebar-section { margin-bottom: 1.5rem; }
+        .sidebar-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); padding: 0 1.25rem; margin-bottom: 0.5rem; }
+        .sidebar-link { display: block; padding: 0.6rem 1.25rem; text-decoration: none; color: var(--color-text); font-size: 0.9rem; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: var(--color-accent-light); }
+        .sidebar-link.active { background: var(--color-accent-light); color: var(--color-accent); border-left-color: var(--color-accent); }
+        .main-content { padding: 2.5rem; max-width: 850px; }
+        .welcome h1 { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem; }
+        .welcome p { color: var(--color-text-muted); margin-bottom: 2rem; }
+        .card { background: white; border-radius: 12px; border: 1px solid var(--color-border); margin-bottom: 1.5rem; overflow: hidden; }
+        .card-header { padding: 1.25rem 1.5rem; background: var(--color-accent-light); }
+        .card-header h2 { font-family: var(--font-serif); font-size: 1.25rem; }
+        .lesson { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border); }
+        .lesson:last-child { border-bottom: none; }
+        .lesson-icon { width: 36px; height: 36px; background: var(--color-accent-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .lesson-info { flex: 1; }
+        .lesson-title { font-weight: 500; font-size: 0.95rem; }
+        .downloads { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; padding: 1.5rem; }
+        .dl-card { background: var(--color-bg); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border); text-decoration: none; color: var(--color-text); }
+        .dl-card:hover { border-color: var(--color-accent); }
+        .dl-card h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .dl-card p { font-size: 0.8rem; color: var(--color-text-muted); }
+        @media (max-width: 800px) { .portal-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-container"><a href="index.html" class="logo">ABH Consulting</a></div></nav>
+    <div class="portal-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Dashboard</div>
+                <a href="#" class="sidebar-link active">Home</a>
+                <a href="#downloads" class="sidebar-link">Downloads</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Part I: Landscape</div>
+                <a href="#" class="sidebar-link">1. Introduction</a>
+                <a href="#" class="sidebar-link">2. How Admissions Works</a>
+                <a href="#" class="sidebar-link">3. What Schools Want</a>
+                <a href="#" class="sidebar-link">4. Your Timeline</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Part II: Profile</div>
+                <a href="#" class="sidebar-link">5. Academics</a>
+                <a href="#" class="sidebar-link">6. Extracurriculars</a>
+                <a href="#" class="sidebar-link">7. Recommendations</a>
+                <a href="#" class="sidebar-link">8. Testing</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Part III: Application</div>
+                <a href="#" class="sidebar-link">9. School List</a>
+                <a href="#" class="sidebar-link">10. Personal Statement</a>
+                <a href="#" class="sidebar-link">11. Supplementals</a>
+                <a href="#" class="sidebar-link">12. Activities</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Part IV: Decisions</div>
+                <a href="#" class="sidebar-link">13. Financial Aid</a>
+                <a href="#" class="sidebar-link">14. Interviews</a>
+                <a href="#" class="sidebar-link">15. Waitlists</a>
+                <a href="#" class="sidebar-link">16. Final Decision</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="welcome">
+                <h1>Welcome to Your Course</h1>
+                <p>Access your lessons and resources below.</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><h2>Part I: Understanding the Landscape</h2></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 1: Introduction</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 2: How Admissions Works</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 3: What Schools Want</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 4: Your Timeline</div></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h2>Part II: Building Your Profile</h2></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 5: Academics & Courses</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 6: Extracurriculars</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 7: Recommendations</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 8: Testing Strategy</div></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h2>Part III: The Application</h2></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 9: School List</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 10: Personal Statement</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 11: Supplementals</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 12: Activities Section</div></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h2>Part IV: Decisions & Beyond</h2></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 13: Financial Aid</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 14: Interviews</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 15: Waitlists</div></div></div>
+                <div class="lesson"><div class="lesson-icon">📹</div><div class="lesson-info"><div class="lesson-title">Chapter 16: Final Decision</div></div></div>
+            </div>
+            <div class="card" id="downloads">
+                <div class="card-header"><h2>Downloads</h2></div>
+                <div class="downloads">
+                    <a href="#" class="dl-card"><h4>📋 Application Timeline</h4><p>Month-by-month guide</p></a>
+                    <a href="#" class="dl-card"><h4>📝 Essay Worksheet</h4><p>Brainstorming prompts</p></a>
+                    <a href="#" class="dl-card"><h4>📊 School Research</h4><p>Comparison template</p></a>
+                    <a href="#" class="dl-card"><h4>✅ Application Checklist</h4><p>Don't miss anything</p></a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
