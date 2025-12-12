@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABH Consulting | Admissions Guidance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FFFBF7;
+            --color-text: #1a1a1a;
+            --color-text-muted: #5a5a5a;
+            --color-accent: #2D5A4A;
+            --color-accent-light: #E8F0ED;
+            --color-border: #e5e0db;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-sans: 'DM Sans', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); background-color: var(--color-bg); color: var(--color-text); line-height: 1.6; font-size: 17px; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: var(--color-bg); border-bottom: 1px solid var(--color-border); z-index: 1000; padding: 1rem 2rem; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--color-text); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-accent); }
+        .nav-cta { background: var(--color-accent); color: white !important; padding: 0.6rem 1.2rem; border-radius: 6px; }
+        .nav-cta:hover { background: #234a3c !important; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 70%; height: 150%; background: radial-gradient(ellipse, var(--color-accent-light) 0%, transparent 70%); opacity: 0.6; z-index: 0; }
+        .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-eyebrow { font-size: 0.9rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s ease forwards; }
+        .hero h1 { font-family: var(--font-serif); font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; max-width: 800px; opacity: 0; animation: fadeUp 0.8s ease 0.15s forwards; }
+        .hero h1 em { font-style: italic; color: var(--color-accent); }
+        .hero-subtitle { font-size: 1.25rem; color: var(--color-text-muted); max-width: 580px; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease 0.45s forwards; }
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--color-accent); color: white; }
+        .btn-primary:hover { background: #234a3c; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45, 90, 74, 0.25); }
+        .btn-secondary { background: transparent; color: var(--color-text); border: 2px solid var(--color-border); }
+        .btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
+        section { padding: 6rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin-bottom: 1rem; }
+        .section-header p { color: var(--color-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        #services { background: white; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--color-bg); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--color-border); transition: all 0.3s ease; }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); border-color: var(--color-accent); }
+        .service-icon { width: 56px; height: 56px; background: var(--color-accent-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .service-card h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.75rem; font-weight: 400; }
+        .service-card p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .service-card.course-highlight { background: linear-gradient(135deg, var(--color-accent) 0%, #3d7a64 100%); color: white; border: none; grid-column: span 2; }
+        .service-card.course-highlight .service-icon { background: rgba(255,255,255,0.2); }
+        .service-card.course-highlight h3 { color: white; }
+        .service-card.course-highlight p { color: rgba(255,255,255,0.9); }
+        .course-features { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .course-feature { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+        .course-btn { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: white; color: var(--color-accent); border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .course-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        #free-guide { background: var(--color-accent-light); }
+        .guide-box { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .guide-content h2 { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 1rem; }
+        .guide-content p { color: var(--color-text-muted); margin-bottom: 1.5rem; }
+        .guide-features { list-style: none; margin-bottom: 1.5rem; }
+        .guide-features li { padding: 0.5rem 0; color: var(--color-text-muted); }
+        .guide-features li::before { content: "✓ "; color: var(--color-accent); font-weight: bold; }
+        .guide-form input { width: 100%; padding: 1rem; border: 1px solid var(--color-border); border-radius: 8px; font-size: 1rem; margin-bottom: 1rem; }
+        .guide-form button { width: 100%; padding: 1rem; background: var(--color-accent); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .guide-form button:hover { background: #234a3c; }
+        .guide-preview { background: linear-gradient(135deg, var(--color-accent) 0%, #3d7a64 100%); color: white; padding: 3rem 2rem; border-radius: 12px; text-align: center; box-shadow: 0 20px 60px rgba(45,90,74,0.3); }
+        .guide-preview h3 { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        #about { background: var(--color-bg); }
+        .about-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; }
+        .about-image img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center top; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+        .about-text h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; margin-bottom: 1.5rem; line-height: 1.2; }
+        .about-text p { color: var(--color-text-muted); margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .school-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 2rem 0; }
+        .school-tag { background: var(--color-accent-light); color: var(--color-accent); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        #testimonials { background: var(--color-accent); color: white; }
+        #testimonials .section-header h2 { color: white; }
+        #testimonials .section-header p { color: rgba(255,255,255,0.8); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .testimonial-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); }
+        .testimonial-text { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; }
+        .testimonial-author { font-weight: 600; font-size: 0.95rem; }
+        .testimonial-detail { font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem; }
+        #cta { background: var(--color-bg); text-align: center; }
+        .cta-box { background: white; padding: 4rem; border-radius: 24px; border: 1px solid var(--color-border); max-width: 700px; margin: 0 auto; }
+        .cta-box h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 400; margin-bottom: 1rem; }
+        .cta-box p { color: var(--color-text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
+        footer { background: var(--color-text); color: white; padding: 3rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-logo { font-family: var(--font-serif); font-size: 1.3rem; }
+        .footer-links { display: flex; gap: 2rem; list-style: none; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+        .footer-contact a { color: white; text-decoration: none; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { order: -1; }
+            .cta-box { padding: 2.5rem 1.5rem; }
+            .footer-container { flex-direction: column; text-align: center; }
+            .service-card.course-highlight { grid-column: span 1; }
+            .guide-box { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">ABH Consulting</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#free-guide">Free Guide</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="index-es.html" style="font-size:0.85rem;color:var(--color-text-muted)">Español</a></li>
+                <li><a href="https://calendly.com/abhconsulting/30min" target="_blank" class="nav-cta">Book a Call</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Admissions Consulting</p>
+            <h1>Your application blueprint <em>starts here</em></h1>
+            <p class="hero-subtitle">Personalized guidance for college, graduate, and professional school applications. Find the programs where you'll thrive.</p>
+            <div class="hero-buttons">
+                <a href="https://calendly.com/abhconsulting/30min" target="_blank" class="btn btn-primary">Book a Call</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>How We Help</h2>
+                <p>Tailored support for undergraduate, graduate, and professional school applications</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>1:1 Admissions Coaching</h3>
+                    <p>Personalized sessions to build your school list, plan timelines, and clarify your strategy from start to finish.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3>Essay Editing</h3>
+                    <p>Detailed feedback to help you craft powerful essays that reflect your authentic voice and stand out to admissions committees.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Full Application Mentorship</h3>
+                    <p>Comprehensive start-to-finish support including coaching, editing, resume help, interview prep, and more.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⭐</div>
+                    <h3>Specialized Add-ons</h3>
+                    <p>Resume reviews, mock interviews, and scholarship application help to give you every possible advantage.</p>
+                </div>
+                <div class="service-card course-highlight" id="course">
+                    <div class="service-icon">🎓</div>
+                    <h3>The Application Blueprint Course</h3>
+                    <p>A comprehensive self-paced course covering everything you need to navigate college admissions with confidence. From building your profile and crafting standout essays to understanding financial aid and making your final decision.</p>
+                    <div class="course-features">
+                        <div class="course-feature"><span>📚</span> 16+ Video Lessons</div>
+                        <div class="course-feature"><span>📝</span> Worksheets & Templates</div>
+                        <div class="course-feature"><span>✅</span> Checklists & Timelines</div>
+                    </div>
+                    <a href="course.html" class="course-btn">Learn More — $80</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="free-guide">
+        <div class="section-container">
+            <div class="guide-box">
+                <div class="guide-content">
+                    <h2>Free: The Application Starter Kit</h2>
+                    <p>Get the essential checklist and timeline to start your application journey on the right foot.</p>
+                    <ul class="guide-features">
+                        <li>Month-by-month application timeline</li>
+                        <li>What schools are really looking for</li>
+                        <li>Common mistakes to avoid</li>
+                        <li>Essay brainstorming prompts</li>
+                    </ul>
+                    <form class="guide-form" action="https://formbold.com/s/3nKmd" method="POST">
+                        <input type="hidden" name="subject" value="New Guide Download Request">
+                        <input type="text" name="name" placeholder="Your first name" required>
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit">Get the Free Guide</button>
+                    </form>
+                </div>
+                <div class="guide-image">
+                    <div class="guide-preview">
+                        <h3>📘 Application Starter Kit</h3>
+                        <p>Your free roadmap to admissions success</p>
+                        <br>
+                        <p style="font-size: 2.5rem;">📋✏️🎯</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="photo.jpg" alt="ABH Consulting Founder">
+                </div>
+                <div class="about-text">
+                    <h2>Support from someone who's been there</h2>
+                    <p>ABH Consulting was founded by a UPenn graduate and experienced education mentor who has gained admission to top universities including Cornell, Johns Hopkins, UChicago, Northwestern, and more.</p>
+                    <div class="school-list">
+                        <span class="school-tag">UPenn</span>
+                        <span class="school-tag">Cornell</span>
+                        <span class="school-tag">Johns Hopkins</span>
+                        <span class="school-tag">UChicago</span>
+                        <span class="school-tag">Northwestern</span>
+                    </div>
+                    <p>I've guided students through the admissions process because I understand firsthand how overwhelming it can feel—whether you're applying to college, graduate school, or professional programs.</p>
+                    <p>My approach is simple: help you present the most authentic, compelling version of yourself. No gimmicks, no cookie-cutter templates—just strategic guidance tailored to who you are and where you want to go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Student Stories</h2>
+                <p>Real results from real students</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Working with ABH completely changed how I approached my applications. I went from feeling lost to feeling confident about every essay I submitted."</p>
+                    <p class="testimonial-author">— Student Name</p>
+                    <p class="testimonial-detail">Admitted to [University]</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The personalized attention made all the difference. They helped me find my voice and tell my story in a way that felt true to who I am."</p>
+                    <p class="testimonial-author">— Student Name</p>
+                    <p class="testimonial-detail">Admitted to [University]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="section-container">
+            <div class="cta-box">
+                <h2>Ready to get started?</h2>
+                <p>Book a call to discuss your goals and see if we're a good fit.</p>
+                <a href="https://calendly.com/abhconsulting/30min" target="_blank" class="btn btn-primary">Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">ABH Consulting</div>
+            <ul class="footer-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#course">Course</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://calendly.com/abhconsulting/30min" target="_blank">Contact</a></li>
+            </ul>
+            <div class="footer-contact">
+                <a href="mailto:abhconsulting@outlook.com">abhconsulting@outlook.com</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
