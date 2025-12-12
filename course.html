@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Application Blueprint Course | ABH Consulting</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAFp3M2URgsFNv0CFyN09kE-1dFe7L7eiE6AvTyQ7WEesuZfNtLd315og4SYLrF05wMHWxI5XFIctGPrI&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,10 +36,9 @@
         .price-tag { display: inline-block; background: rgba(255,255,255,0.15); padding: 1rem 2rem; border-radius: 12px; margin-bottom: 2rem; }
         .price-tag .price { font-family: var(--font-serif); font-size: 2.5rem; }
         .price-tag .price-note { font-size: 0.9rem; opacity: 0.85; }
-        .paypal-wrapper { background: white; padding: 1.5rem; border-radius: 12px; display: inline-block; min-width: 300px; }
         .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; cursor: pointer; border: none; }
-        .btn-primary { background: var(--color-accent); color: white; }
-        .btn-primary:hover { background: #234a3c; transform: translateY(-2px); }
+        .btn-white { background: white; color: var(--color-accent); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
         section { padding: 5rem 2rem; }
         .section-container { max-width: 1000px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 3rem; }
@@ -70,6 +70,8 @@
         .course-cta { text-align: center; background: var(--color-bg); }
         .course-cta h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; }
         .course-cta p { color: var(--color-text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
+        .btn-primary { background: var(--color-accent); color: white; }
+        .btn-primary:hover { background: #234a3c; transform: translateY(-2px); }
         footer { background: var(--color-text); color: white; padding: 3rem 2rem; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
         .footer-logo { font-family: var(--font-serif); font-size: 1.3rem; }
@@ -96,18 +98,21 @@
         </div>
     </nav>
 
-    <section class="course-hero" id="enroll">
+    <section class="course-hero">
         <h1>The Application Blueprint Course</h1>
         <p>A comprehensive self-paced program covering everything you need to navigate college admissions with confidence—from building your profile to making your final decision.</p>
         <div class="price-tag">
             <div class="price">$80</div>
             <div class="price-note">One-time payment • Lifetime access</div>
         </div>
-        <br><br>
-        <div class="paypal-wrapper">
-            <div id="paypal-container-FSKG3CM89UWYY"></div>
-        </div>
+        <br>
+        <div id="paypal-container-hero" style="display:inline-block;min-width:250px;"></div>
     </section>
+    <script>
+        paypal.HostedButtons({
+            hostedButtonId: "FSKG3CM89UWYY",
+        }).render("#paypal-container-hero");
+    </script>
 
     <section id="included">
         <div class="section-container">
@@ -223,9 +228,14 @@
         <div class="section-container">
             <h2>Ready to take control of your applications?</h2>
             <p>Get lifetime access to the complete Application Blueprint Course.</p>
-            <a href="#enroll" class="btn btn-primary">Enroll Now — $80</a>
+            <div id="paypal-container-bottom" style="display:inline-block;min-width:250px;"></div>
         </div>
     </section>
+    <script>
+        paypal.HostedButtons({
+            hostedButtonId: "FSKG3CM89UWYY",
+        }).render("#paypal-container-bottom");
+    </script>
 
     <footer>
         <div class="footer-container">
@@ -238,17 +248,11 @@
         </div>
     </footer>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAFp3M2URgsFNv0CFyN09kE-1dFe7L7eiE6AvTyQ7WEesuZfNtLd315og4SYLrF05wMHWxI5XFIctGPrI&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
     <script>
-        paypal.HostedButtons({
-            hostedButtonId: "FSKG3CM89UWYY",
-        }).render("#paypal-container-FSKG3CM89UWYY");
-
         function toggleModule(header) {
             const module = header.parentElement;
             module.classList.toggle('active');
         }
-        
         function checkAccess() {
             const code = document.getElementById('access-code').value.trim();
             const validCodes = ['BLUEPRINT2024', 'STUDENT2024', 'ABH2024'];
@@ -258,7 +262,6 @@
                 alert('Invalid access code. Please check your email for the correct code or contact abhconsulting@outlook.com for help.');
             }
         }
-        
         document.getElementById('access-code').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkAccess();
         });
